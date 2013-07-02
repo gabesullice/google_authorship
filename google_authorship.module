@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * A module to display Google+ profile pictures of node authors in Google search results.
+ *
+ * This module adds a field to the user entity for a link the the user's Google+ profile.
+ * Using that field, if it is filled, this module alters the By line of a node's full
+ * content display to link to the Google+ profile. Finally, by setting "rel='author'"
+ * Google will recognize and display an authors profile picture in its search results.
+ */
+
+/**
+ * Implements directory_download_menu()
+ */
+
+function google_authorship_node_view($node, $view_mode) {
+  if ($view_mode == 'full') {
+    dpm($node->name);
+  };
+}
