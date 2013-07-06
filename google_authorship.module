@@ -15,8 +15,11 @@
  */
 function google_authorship_preprocess_username(&$variables) {
   $nid = arg(1);
+  // if the username being processed is related to a node and that node is being displayed
   if (array_key_exists('nid', $variables['account']) && $variables['account']->nid == $nid) {
+    // then alter the link path
     $variables['link_path'] = 'http://plus.google.com';
+    // and set rel="author" in the html output.
     $variables['link_attributes']['rel'] = 'author';
   };
 }
