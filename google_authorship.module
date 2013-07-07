@@ -51,10 +51,10 @@ function google_authorship_get_google_id($uid) {
   $account = user_load($uid);
 
   // If the Google+ ID field is not empty then proceed
-  if (!empty($account->field_google_user_id)) {
+  if (!empty($account->field_google_plus_id)) {
 
     // Get the Google+ ID
-    $google_id = $account->field_google_user_id['und'][0]['safe_value'];
+    $google_id = $account->field_google_plus_id['und'][0]['safe_value'];
 
     // If the ID is a valid Google+ ID length
     if (strlen($google_id) != 21) {
