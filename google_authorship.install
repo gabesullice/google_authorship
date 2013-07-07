@@ -20,6 +20,7 @@ function google_authorship_enable() {
       'field_name' => 'field_google_plus_id',
       'entity_type' => 'user',
       'label' => 'Google+ ID',
+      'description' => 'This is the 21 digit number found in the URL of this user\'s Google+ profile.',
       'bundle' => 'user',
       // If you don't set the "required" property then the field wont be required by default.
       'settings' => array(
@@ -29,11 +30,16 @@ function google_authorship_enable() {
       'widget' => array(
         'type' => 'textfield',
         'weight' => '1',
+        'settings' => array(
+          'size' => '21',
+        ),
       ),
-/*      'display' => array(
-        'label' => 'hidden',
-        'weight' => '2',
-      ),*/
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'weight' => '2',
+        ),
+      ),
     );
     field_create_instance($instance);
   }
