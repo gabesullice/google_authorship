@@ -33,21 +33,21 @@ function google_authorship_preprocess_username(&$variables) {
       // and set rel="author" in the html output.
       $variables['link_attributes']['rel'] = 'author';
     }
-
   };
 }
 
 /**
  * Implements google_authorship_get_google_id()
  *
- * Params:
+ * @params:
  * $uid: The user id of the node author
  *
- * Returns:
+ * @returns:
  * A string with the Google+ ID of the node author, if it has been set or NULL if it hasn't
  */
 function google_authorship_get_google_id($uid) {
 
+  // Loads the author's user account'
   $account = user_load($uid);
 
   // If the Google+ ID field is not empty then proceed
@@ -62,6 +62,7 @@ function google_authorship_get_google_id($uid) {
     };
   }
   else {
+    // If the Google+ ID field was empty, set $google_id to NULL
     $google_id = NULL;
   };
 
