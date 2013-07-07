@@ -11,15 +11,60 @@
  */
 
 /**
- * Implements directory_download_menu()
+ * Implements google_authorship_preprocess_username()
  */
 function google_authorship_preprocess_username(&$variables) {
+
+  $bundle = arg(0);
   $nid = arg(1);
-  // if the username being processed is related to a node and that node is being displayed
-  if (array_key_exists('nid', $variables['account']) && $variables['account']->nid == $nid) {
-    // then alter the link path
-    $variables['link_path'] = 'http://plus.google.com';
-    // and set rel="author" in the html output.
-    $variables['link_attributes']['rel'] = 'author';
+
+  // if the content being displayed is a node and the username being processed is not a commenter and is  related to a
+  // node and that node is being displayed currently
+  if ($bundle == 'node' && !array_key_exists('comment_body', $variables['account']) && array_key_exists('nid',
+      $variables['account']) && $variables['account']->nid == $nid) {
+
+    // Get the Google+ ID of the node authot if it exists
+    $google_id = google_authorship_get_google_id($variables['uid']);
+
+    // If the ID exists then proceed, otherwise do nothing
+    if ($google_id !== NULL) {
+      // then alter the link path
+      $variables['link_path'] = 'http://plus.google.com/' . $google_id;
+      // and set rel="author" in the html output.
+      $variables['link_attributes']['rel'] = 'author';
+    }
+
   };
+}
+
+/**
+ * Implements google_authorship_get_google_id()
+ *
+ * Params:
+ * $uid: The user id of the node author
+ *
+ * Returns:
+ * A string with the Google+ ID of the node author, if it has been set or NULL if it hasn't
+ */
+function google_authorship_get_google_id($uid) {
+
+  $account = user_load($uid);
+
+  // If the Google+ ID field is not empty then proceed
+  if (!empty($account->field_google_user_id)) {
+
+    // Get the Google+ ID
+    $google_id = $account->field_google_user_id['und'][0]['safe_value'];
+
+    // If the ID is a valid Google+ ID length
+    if (strlen($google_id) != 21) {
+      $google_id = NULL;
+    };
+  }
+  else {
+    $google_id = NULL;
+  };
+
+  // Return the Google+ ID if it existed and was a valid length, otherwise this will return NULL
+  return $google_id;
 }
