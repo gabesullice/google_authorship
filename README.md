@@ -8,7 +8,7 @@ appropriate author. Finally, by setting the "rel='author'" attribute Google sear
 bots will recognize and display an author's profile picture in its search results.
 
 Installation
-============
+------------
 
 1. Add the module to /sites/all/modules (or /sites/all/modules/contrib).
 2. Go to admin/modules and enable the Google Authorship module.
@@ -28,8 +28,12 @@ Installation
    changes.
 
 Important Notes
-===============
+---------------
 
 This module may not work with themes that override the submitted variable. If it
 does not seem to be working, please first check that your theme does not override
 it on its own.
+
+To verify that Google can see authorship information on your nodes, you can paste
+the URL of a node which this module should have overridden into Google's
+Structured Data Tool at http://www.google.com/webmasters/tools/richsnippets
