@@ -39,10 +39,10 @@ function google_authorship_preprocess_username(&$variables) {
 /**
  * Implements google_authorship_get_google_id()
  *
- * @params:
+ * @param:
  * $uid: The user id of the node author
  *
- * @returns:
+ * @return:
  * A string with the Google+ ID of the node author, if it has been set or NULL if it hasn't
  */
 function google_authorship_get_google_id($uid) {
