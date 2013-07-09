@@ -34,7 +34,7 @@ function google_authorship_enable() {
       'field_name' => 'field_google_plus_id',
       'entity_type' => 'user',
       'label' => 'Google+ ID',
-      'description' => 'This is the 21 digit number found in the URL of this user\'s Google+ profile.',
+      'description' => t('This is the 21 digit number found in the URL of this user\'s Google+ profile.'),
       'bundle' => 'user',
       // If you don't set the "required" property then the field wont be required by default.
       'settings' => array(
