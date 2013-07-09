@@ -1,0 +1,102 @@
+commit 5d326fe9612452925902d37f0ea7ffefb41b8b0d
+Author: gabesullice <gabriel@sullice.com>
+Date:   Tue Jul 9 15:00:33 2013 -0600
+
+    Added t() wrapper to field description. Created README.txt file. Changed @params and @returns to @param and @return.
+
+commit bea772ab3e7089c8491a1aa5b4a2abadbeb2b967
+Merge: f565a62 653ba75
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 17:33:34 2013 -0600
+
+    Merge branch 'master' of github.com:gabesullice/google_authorship
+    
+    Conflicts:
+    	README.md
+
+commit f565a622306978e740c59e24b356f89f1155de44
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 17:20:10 2013 -0600
+
+    Added additional note to README about how to verify the module is funtioning using Google's Structured Data Tool.
+
+commit 27823bfe25244793846fb69233e5bf8cf859d880
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 17:11:54 2013 -0600
+
+    Added installation instructions to the README and a note about theme's overriding the module. Added comments to .module and .install files. Added file headers to .install. Added .install file to the .info file and changed the package from Google to SEO. Changed hook_disable to hook_uninstall to preserve field date if the module is only disabled.
+
+commit 653ba7572903dd7933068e68a05176cc93f797fc
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 17:11:54 2013 -0600
+
+    Added installation instructions to the README and a note about theme's overriding the module. Added comments to .module and .install files. Added file headers to .install. Added .install file to the .info file and changed the package from Google to SEO.
+
+commit 422466f639850b75f8cbee1ba6b2715458818b17
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 00:42:32 2013 -0600
+
+    Finished code to add field_google_plus_id to user entity. Added description and text field length. Removed old code. Still have to add line comments.
+
+commit 36eb60630bf0448105a2b47fabe9764ddbb25152
+Merge: 2d7c086 7b908bf
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 00:16:23 2013 -0600
+
+    Merge branch 'master' of github.com:gabesullice/google_authorship
+
+commit 2d7c086f5b87e908fa5d89f4d99e1d52c36e8baf
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sun Jul 7 00:14:00 2013 -0600
+
+    Added field cardinality. Changed hook_disable to delete the field_google_plus_is field not its instance.
+
+commit 7b908bf03b077fc6fbbea9bdb576515384cd45e1
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sat Jul 6 23:20:43 2013 -0600
+
+    Delete google_authorship.install.php
+    
+    No longer needed.
+
+commit 523921930b7096974ba59734f3538be4bc4cde88
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sat Jul 6 23:18:38 2013 -0600
+
+    Added google_authorship.install, which adds Google+ ID field to user entity and provides uninstall function to delete said field. Changed name of field from field_google_user_id to field_google_plus_id.
+
+commit b9af36aa706caf8fd263eb1eba5af0301e6f5052
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sat Jul 6 18:03:26 2013 -0600
+
+    Implemented retrieval of Google+ ID field, added conditions to verify the URL is for a node, added condition to exclude comment authors, and added more descriptive and accurate code comments.
+
+commit 5e3f7f4cc10555d3c109494c15c20b341b8fd491
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sat Jul 6 16:59:23 2013 -0600
+
+    Added line comments to google_authorship.module
+
+commit 68ff31a20f8ee1c88372c602f675c97ef57cd701
+Author: gabesullice <gabriel@sullice.com>
+Date:   Sat Jul 6 16:10:48 2013 -0600
+
+    Implemented MODULE_preprocess_username to change the link_path and link_attributes to plus.google.com
+
+commit 30c4dd0629db1848a444a54aa42fc34c6d23f784
+Author: Gabriel Sullice <gabriel@sullice.com>
+Date:   Tue Jul 2 11:06:12 2013 -0600
+
+    updated README.md
+
+commit 938d02fd7c30d5a637632a9782f301dbe83aca65
+Author: gabesullice <gabriel@sullice.com>
+Date:   Tue Jul 2 10:27:35 2013 -0600
+
+    Create README.md
+
+commit d8d73d7d8d9b69b4a15136a75a05007af7b1eb91
+Author: gabesullice <gabriel@sullice.com>
+Date:   Tue Jul 2 10:17:53 2013 -0600
+
+    Initial commit
