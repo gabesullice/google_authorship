@@ -88,13 +88,17 @@ function google_authorship_form_user_profile_form_alter(&$form,
  */
 function google_authorship_form_validate(&$form, &$form_state) {
 
-  // Gets the form input for Google+ ID
-  $google_id = $form_state['values']['field_google_plus_id']['und'][0]['value'];
+  // If the user input data into field_google_plus_id
+  if (!empty($form_state['values']['field_google_plus_id']['und'][0]['value'])) {
 
-  // If the string is not 21 digits or it is not a numeric string
-  if(strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
+    // Get the form input for Google+ ID
+    $google_id = $form_state['values']['field_google_plus_id']['und'][0]['value'];
 
-    // Return for resubmission and display error
-    form_error($form, t('The Google+ ID should be 21 numeric digits.'));
+    // If the string is not 21 digits or it is not a numeric string
+    if(strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
+
+      // Return for resubmission and display error
+      form_error($form, t('The Google+ ID should be 21 numeric digits.'));
+    };
   };
 }
