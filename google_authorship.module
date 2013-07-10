@@ -73,3 +73,33 @@ function google_authorship_get_google_id($uid) {
   // Return the Google+ ID if it existed and was a valid length, otherwise this will return NULL
   return $google_id;
 }
+
+/**
+ * Implements hook_form_alter()
+ *
+ * Adds additional validation to the user profile edit form.
+ */
+function google_authorship_form_user_profile_form_alter(&$form,
+                                                        &$form_state,
+                                                        $form_id) {
+
+  $form['#validate'][] = 'google_authorship_form_validate';
+}
+
+/**
+ * Implements hook_form_validate()
+ *
+ * Verifies that the Google+ ID entered is a 21 digit numeric string.
+ */
+function google_authorship_form_validate(&$form, &$form_state) {
+
+  // Gets the form input for Google+ ID
+  $google_id = $form_state['values']['field_google_plus_id']['und'][0]['value'];
+
+  // If the string is not 21 digits or it is not a numeric string
+  if(strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
+
+    // Return for resubmission and display error
+    form_error($form, t('The Google+ ID should be 21 numeric digits.'));
+  };
+}
