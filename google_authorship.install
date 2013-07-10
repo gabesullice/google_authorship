@@ -16,7 +16,6 @@
 function google_authorship_enable() {
   // Check if our field is not already created.
   if (!field_info_field('field_google_plus_id')) {
-    echo 'True';
 
     // Creates an array to pass to Drupal's field_create_field function
     $field = array(
