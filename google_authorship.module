@@ -11,14 +11,16 @@
  */
 
 /**
- * Implements google_authorship_preprocess_username()
+ * Implements template_preprocess_username()
+ *
+ * Alters the 'name' variable to be a link to a Google+ profile and set the "rel='author'" attribute.
  */
 function google_authorship_preprocess_username(&$variables) {
 
   $bundle = arg(0);
   $nid = arg(1);
 
-  // if the content being displayed is a node and the username being processed is not a commenter and is  related to a
+  // if the content being displayed is a node and the username being processed is not a commenter and is related to a
   // node and that node is being displayed currently
   if ($bundle == 'node' && !array_key_exists('comment_body', $variables['account']) && array_key_exists('nid',
       $variables['account']) && $variables['account']->nid == $nid) {
@@ -38,6 +40,8 @@ function google_authorship_preprocess_username(&$variables) {
 
 /**
  * Implements google_authorship_get_google_id()
+ *
+ * Returns a string containing the Google+ ID for a specified UID
  *
  * @param:
  * $uid: The user id of the node author
