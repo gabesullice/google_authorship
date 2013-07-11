@@ -99,8 +99,8 @@ Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 00:42:32 2013 -0600
 
     Finished code to add field_google_plus_id to user entity. Added
-      description and text field length. Removed old code. Still have to add line
-      comments.
+      description and text field length. Removed old code. Still have to add
+      line comments.
 
 commit 36eb60630bf0448105a2b47fabe9764ddbb25152
 Merge: 2d7c086 7b908bf
@@ -129,8 +129,8 @@ Author: gabesullice <gabriel@sullice.com>
 Date:   Sat Jul 6 23:18:38 2013 -0600
 
     Added google_authorship.install, which adds Google+ ID field to user entity
-      and provides uninstall function to delete said field. Changed name of field
-      from field_google_user_id to field_google_plus_id.
+      and provides uninstall function to delete said field. Changed name of
+      field from field_google_user_id to field_google_plus_id.
 
 commit b9af36aa706caf8fd263eb1eba5af0301e6f5052
 Author: gabesullice <gabriel@sullice.com>
