@@ -13,24 +13,27 @@
 /**
  * Implements template_preprocess_username()
  *
- * Alters the 'name' variable to be a link to a Google+ profile and set the "rel='author'" attribute.
+ * Alters the 'name' variable to be a link to a Google+ profile and set the
+ * "rel='author'" attribute.
  */
 function google_authorship_preprocess_username(&$variables) {
 
   $bundle = arg(0);
   $nid = arg(1);
 
-  // if the content being displayed is a node and the username being processed is not a commenter and is related to a
-  // node and that node is being displayed currently
-  if ($bundle == 'node' && !array_key_exists('comment_body', $variables['account']) && array_key_exists('nid',
+  // if the content being displayed is a node and the username being
+  // processed is not a commenter and is related to a node and that node is
+  // being displayed currently.
+  if ($bundle == 'node' && !array_key_exists('comment_body',
+      $variables['account']) && array_key_exists('nid',
       $variables['account']) && $variables['account']->nid == $nid) {
 
-    // Get the Google+ ID of the node authot if it exists
+    // Get the Google+ ID of the node authot if it exists.
     $google_id = google_authorship_get_google_id($variables['uid']);
 
-    // If the ID exists then proceed, otherwise do nothing
+    // If the ID exists then proceed, otherwise do nothing.
     if ($google_id !== NULL) {
-      // then alter the link path
+      // then alter the link path.
       $variables['link_path'] = 'http://plus.google.com/' . $google_id;
       // and set rel="author" in the html output.
       $variables['link_attributes']['rel'] = 'author';
@@ -47,25 +50,27 @@ function google_authorship_preprocess_username(&$variables) {
  * $uid: The user id of the node author
  *
  * @return:
- * A string with the Google+ ID of the node author, if it has been set or NULL if it hasn't
+ * A string with the Google+ ID of the node author, if it has been set or
+ * NULL if it hasn't
  */
 function google_authorship_get_google_id($uid) {
 
-  // Loads the author's user account'
+  // Loads the author's user account.
   $account = user_load($uid);
 
-  // If the Google+ ID field is not empty then proceed
+  // If the Google+ ID field is not empty then proceed.
   if (!empty($account->field_google_plus_id)) {
 
-    // Get the Google+ ID
+    // Get the Google+ ID.
     $google_id = $account->field_google_plus_id['und'][0]['safe_value'];
   }
   else {
-    // If the Google+ ID field was empty, set $google_id to NULL
+    // If the Google+ ID field was empty, set $google_id to NULL.
     $google_id = NULL;
   };
 
-  // Return the Google+ ID if it existed and was a valid length, otherwise this will return NULL
+  // Return the Google+ ID if it existed and was a valid length,
+  // otherwise this will return NULL
   return $google_id;
 }
 
@@ -88,16 +93,16 @@ function google_authorship_form_user_profile_form_alter(&$form,
  */
 function google_authorship_form_validate(&$form, &$form_state) {
 
-  // If the user input data into field_google_plus_id
+  // If the user input data into field_google_plus_id.
   if (!empty($form_state['values']['field_google_plus_id']['und'][0]['value'])) {
 
-    // Get the form input for Google+ ID
+    // Get the form input for Google+ ID.
     $google_id = $form_state['values']['field_google_plus_id']['und'][0]['value'];
 
-    // If the string is not 21 digits or it is not a numeric string
+    // If the string is not 21 digits or it is not a numeric string.
     if(strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
 
-      // Return for resubmission and display error
+      // Return for resubmission and display error.
       form_error($form, t('The Google+ ID should be 21 numeric digits.'));
     };
   };
