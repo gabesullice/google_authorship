@@ -1,7 +1,5 @@
 name = Google Authorship
-description = This module will allow Google search results to display an author's profile picture.
+description = "This module will allow Google search results to display an
+              author's profile picture."
 core = 7.x
 package = SEO
-
-files[] = google_authorship.module
-files[] = google_authorship.install
