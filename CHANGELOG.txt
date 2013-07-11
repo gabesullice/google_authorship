@@ -2,38 +2,48 @@ commit f7f58c5ecb3b0697f8c54beb19c01024a556731e
 Author: gabesullice <gabriel@sullice.com>
 Date:   Wed Jul 10 10:05:32 2013 -0600
 
-    Issue #2038287 by gabesullice: Added condition to google_authorship_form_validate() to only validate input if a value was actually input.
+    Issue #2038287 by gabesullice: Added condition to
+      google_authorship_form_validate() to only validate input if a value was
+      actually input.
 
 commit f63128fb24a5203cb8363de9ce8bd17a264dd641
 Merge: 80039bd d95503b
 Author: gabesullice <gabriel@sullice.com>
 Date:   Wed Jul 10 00:35:48 2013 -0600
 
-    Merge branch '7.x-1.x' of git.drupal.org:sandbox/gabesullice/2038225 into 7.x-1.x
+    Merge branch '7.x-1.x' of git.drupal.org:sandbox/gabesullice/2038225 into
+      7.x-1.x
 
 commit 80039bdc79709c8e4422bfdcc564bb94186178be
 Author: gabesullice <gabriel@sullice.com>
 Date:   Wed Jul 10 00:34:41 2013 -0600
 
-    Issue #2038287 by gabesullice: Removed string length verification from google_authorship_get_google_id().
+    Issue #2038287 by gabesullice: Removed string length verification from
+      google_authorship_get_google_id().
 
 commit c2e2563a78f1e95ed636deb8c5788321cde8c4e0
 Author: gabesullice <gabriel@sullice.com>
 Date:   Wed Jul 10 00:31:51 2013 -0600
 
-    Issue #2038287 by gabesullice: Added user profile form validation for the Google+ ID field.
+    Issue #2038287 by gabesullice: Added user profile form validation for the
+      Google+ ID field.
 
 commit d95503b56cc457d708ba1d98619d27610762171b
 Author: gabesullice <gabriel@sullice.com>
 Date:   Wed Jul 10 00:31:51 2013 -0600
 
-    Issue #2038287 by gabesullice: Added user profile form validation for the Google+ ID field and removed string length verification from google_authorship_get_google_id().
+    Issue #2038287 by gabesullice: Added user profile form validation for the
+      Google+ ID field and removed string length verification from
+      google_authorship_get_google_id().
 
 commit baf2bd33e74663144b6091cf95a7e69c1dc45c09
 Author: gabesullice <gabriel@sullice.com>
 Date:   Tue Jul 9 22:31:28 2013 -0600
 
-    Issue #2038287 by gabesullice: Changed google_authorship_preprocess_username() to template_preprocess_username(); added a description to google_authorship_get_google_id(); removed 'echo 'True'' debugging line from google_authorship_enable().
+    Issue #2038287 by gabesullice: Changed
+      google_authorship_preprocess_username() to template_preprocess_username();
+      added a description to google_authorship_get_google_id(); removed
+      'echo 'True'' debugging line from google_authorship_enable().
 
 commit 58357b9cd0b7f2a8766b50a334f51f9ee3713d6f
 Author: gabesullice <gabriel@sullice.com>
@@ -45,7 +55,8 @@ commit 5d326fe9612452925902d37f0ea7ffefb41b8b0d
 Author: gabesullice <gabriel@sullice.com>
 Date:   Tue Jul 9 15:00:33 2013 -0600
 
-    Added t() wrapper to field description. Created README.txt file. Changed @params and @returns to @param and @return.
+    Added t() wrapper to field description. Created README.txt file. Changed
+      @params and @returns to @param and @return.
 
 commit bea772ab3e7089c8491a1aa5b4a2abadbeb2b967
 Merge: f565a62 653ba75
@@ -61,25 +72,35 @@ commit f565a622306978e740c59e24b356f89f1155de44
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 17:20:10 2013 -0600
 
-    Added additional note to README about how to verify the module is funtioning using Google's Structured Data Tool.
+    Added additional note to README about how to verify the module is
+      functioning using Google's Structured Data Tool.
 
 commit 27823bfe25244793846fb69233e5bf8cf859d880
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 17:11:54 2013 -0600
 
-    Added installation instructions to the README and a note about theme's overriding the module. Added comments to .module and .install files. Added file headers to .install. Added .install file to the .info file and changed the package from Google to SEO. Changed hook_disable to hook_uninstall to preserve field date if the module is only disabled.
+    Added installation instructions to the README and a note about theme's
+      overriding the module. Added comments to .module and .install files.
+      Added file headers to .install. Added .install file to the .info file and
+      changed the package from Google to SEO. Changed hook_disable to
+      hook_uninstall to preserve field date if the module is only disabled.
 
 commit 653ba7572903dd7933068e68a05176cc93f797fc
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 17:11:54 2013 -0600
 
-    Added installation instructions to the README and a note about theme's overriding the module. Added comments to .module and .install files. Added file headers to .install. Added .install file to the .info file and changed the package from Google to SEO.
+    Added installation instructions to the README and a note about theme's
+      overriding the module. Added comments to .module and .install files.
+      Added file headers to .install. Added .install file to the .info file and
+      changed the package from Google to SEO.
 
 commit 422466f639850b75f8cbee1ba6b2715458818b17
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 00:42:32 2013 -0600
 
-    Finished code to add field_google_plus_id to user entity. Added description and text field length. Removed old code. Still have to add line comments.
+    Finished code to add field_google_plus_id to user entity. Added
+      description and text field length. Removed old code. Still have to add line
+      comments.
 
 commit 36eb60630bf0448105a2b47fabe9764ddbb25152
 Merge: 2d7c086 7b908bf
@@ -92,7 +113,8 @@ commit 2d7c086f5b87e908fa5d89f4d99e1d52c36e8baf
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sun Jul 7 00:14:00 2013 -0600
 
-    Added field cardinality. Changed hook_disable to delete the field_google_plus_is field not its instance.
+    Added field cardinality. Changed hook_disable to delete the
+      field_google_plus_is field not its instance.
 
 commit 7b908bf03b077fc6fbbea9bdb576515384cd45e1
 Author: gabesullice <gabriel@sullice.com>
@@ -106,13 +128,17 @@ commit 523921930b7096974ba59734f3538be4bc4cde88
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sat Jul 6 23:18:38 2013 -0600
 
-    Added google_authorship.install, which adds Google+ ID field to user entity and provides uninstall function to delete said field. Changed name of field from field_google_user_id to field_google_plus_id.
+    Added google_authorship.install, which adds Google+ ID field to user entity
+      and provides uninstall function to delete said field. Changed name of field
+      from field_google_user_id to field_google_plus_id.
 
 commit b9af36aa706caf8fd263eb1eba5af0301e6f5052
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sat Jul 6 18:03:26 2013 -0600
 
-    Implemented retrieval of Google+ ID field, added conditions to verify the URL is for a node, added condition to exclude comment authors, and added more descriptive and accurate code comments.
+    Implemented retrieval of Google+ ID field, added conditions to verify the
+      URL is for a node, added condition to exclude comment authors, and added
+      more descriptive and accurate code comments.
 
 commit 5e3f7f4cc10555d3c109494c15c20b341b8fd491
 Author: gabesullice <gabriel@sullice.com>
@@ -124,7 +150,8 @@ commit 68ff31a20f8ee1c88372c602f675c97ef57cd701
 Author: gabesullice <gabriel@sullice.com>
 Date:   Sat Jul 6 16:10:48 2013 -0600
 
-    Implemented MODULE_preprocess_username to change the link_path and link_attributes to plus.google.com
+    Implemented MODULE_preprocess_username to change the link_path and
+      link_attributes to plus.google.com
 
 commit 30c4dd0629db1848a444a54aa42fc34c6d23f784
 Author: Gabriel Sullice <gabriel@sullice.com>

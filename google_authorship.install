@@ -14,7 +14,8 @@
  * create it.  * It will then add an instance of that field to the user
  * entity and set various defaults and other settings.
  */
-function google_authorship_enable() {
+function google_authorship_enable()
+{
   // Check if our field is not already created.
   if (!field_info_field('field_google_plus_id')) {
 
@@ -76,7 +77,8 @@ function google_authorship_enable() {
  * This will delete the Google+ ID field and all its instances from the user
  * bundle when the module is uninstalled.
  */
-function google_authorship_uninstall() {
+function google_authorship_uninstall()
+{
   if (field_info_field('field_google_plus_id')) {
     field_delete_field('field_google_plus_id');
   };
