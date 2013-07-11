@@ -65,7 +65,7 @@ function google_authorship_get_google_id($uid) {
   if (!empty($account->field_google_plus_id)) {
 
     // Get the Google+ ID.
-    $google_id = $account->field_google_plus_id['und'][0]['safe_value'];
+    $google_id = $account->field_google_plus_id[LANGUAGE_NONE][0]['safe_value'];
   }
   else {
     // If the Google+ ID field was empty, set $google_id to NULL.
@@ -97,10 +97,10 @@ function google_authorship_form_user_profile_form_alter(&$form,
 function google_authorship_form_validate(&$form, &$form_state) {
 
   // If the user input data into field_google_plus_id.
-  if (!empty($form_state['values']['field_google_plus_id']['und'][0]['value'])) {
+  if (!empty($form_state['values']['field_google_plus_id'][LANGUAGE_NONE][0]['value'])) {
 
     // Get the form input for Google+ ID.
-    $google_id = $form_state['values']['field_google_plus_id']['und'][0]['value'];
+    $google_id = $form_state['values']['field_google_plus_id'][LANGUAGE_NONE][0]['value'];
 
     // If the string is not 21 digits or it is not a numeric string.
     if (strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
