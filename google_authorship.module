@@ -2,7 +2,6 @@
 
 /**
  * @file
- *
  * A module to display Google+ profile pictures of node authors in Google
  * search results.
  *
@@ -14,7 +13,7 @@
  */
 
 /**
- * Implements template_preprocess_username()
+ * Implements template_preprocess_username().
  *
  * Alters the 'name' variable to be a link to a Google+ profile and set the
  * "rel='author'" attribute.
@@ -24,7 +23,7 @@ function google_authorship_preprocess_username(&$variables) {
   $bundle = arg(0);
   $nid = arg(1);
 
-  // if the content being displayed is a node and the username being
+  // If the content being displayed is a node and the username being
   // processed is not a commenter and is related to a node and that node is
   // being displayed currently.
   if ($bundle == 'node' && !array_key_exists('comment_body',
@@ -37,16 +36,16 @@ function google_authorship_preprocess_username(&$variables) {
 
     // If the ID exists then proceed, otherwise do nothing.
     if ($google_id !== NULL) {
-      // then alter the link path.
+      // Then alter the link path.
       $variables['link_path'] = 'http://plus.google.com/' . $google_id;
-      // and set rel="author" in the html output.
+      // End set rel="author" in the html output.
       $variables['link_attributes']['rel'] = 'author';
     }
   };
 }
 
 /**
- * Implements google_authorship_get_google_id()
+ * Implements google_authorship_get_google_id().
  *
  * Returns a string containing the Google+ ID for a specified UID
  *
@@ -74,12 +73,12 @@ function google_authorship_get_google_id($uid) {
   };
 
   // Return the Google+ ID if it existed and was a valid length,
-  // otherwise this will return NULL
+  // otherwise this will return NULL.
   return $google_id;
 }
 
 /**
- * Implements hook_form_alter()
+ * Implements hook_form_alter().
  *
  * Adds additional validation to the user profile edit form.
  */
@@ -91,7 +90,7 @@ function google_authorship_form_user_profile_form_alter(&$form,
 }
 
 /**
- * Implements hook_form_validate()
+ * Implements hook_form_validate().
  *
  * Verifies that the Google+ ID entered is a 21 digit numeric string.
  */

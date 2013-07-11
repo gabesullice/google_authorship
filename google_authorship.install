@@ -2,7 +2,6 @@
 
 /**
  * @file
- *
  * Adds field to user entity on enable and removes fields on uninstall. Will
  * not delete fields upon disable.
  */
@@ -18,7 +17,7 @@ function google_authorship_enable() {
   // Check if our field is not already created.
   if (!field_info_field('field_google_plus_id')) {
 
-    // Creates an array to pass to Drupal's field_create_field function
+    // Creates an array to pass to Drupal's field_create_field function.
     $field = array(
       'field_name' => 'field_google_plus_id',
       'type' => 'text',
@@ -26,7 +25,7 @@ function google_authorship_enable() {
       'cardinality' => '1',
     );
 
-    // Takes the previous array and creates a new Drupal 7 field
+    // Takes the previous array and creates a new Drupal 7 field.
     field_create_field($field);
 
     // Create the array to pass to field_create_instance()
