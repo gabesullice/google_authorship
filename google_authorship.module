@@ -37,9 +37,8 @@ function google_authorship_preprocess_username(&$variables) {
     // If the ID exists then proceed, otherwise do nothing.
     if ($google_id !== NULL) {
       // Then alter the link path.
-      $variables['link_path'] = 'http://plus.google.com/' . $google_id;
-      // End set rel="author" in the html output.
-      $variables['link_attributes']['rel'] = 'author';
+      $variables['link_path'] = 'http://plus.google.com/' . $google_id
+                                . "?rel='author'";
     }
   };
 }
