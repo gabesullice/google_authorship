@@ -15,32 +15,26 @@
 /**
  * Implements template_preprocess_username().
  *
- * Alters the 'name' variable to be a link to a Google+ profile and set the
- * "rel='author'" attribute.
+ * Alters the 'name' variable to be a link to a Google+ profile and sets the
+ * "rel='author'" parameter on the generate URL.
  */
 function google_authorship_preprocess_username(&$variables) {
 
-  $bundle = arg(0);
-  $nid = arg(1);
+  // Checks if the loaded page is a node page.
+  $is_node_page = (($node = menu_get_object('node')));
 
-  // If the content being displayed is a node and the username being
-  // processed is not a commenter and is related to a node and that node is
-  // being displayed currently.
-  if ($bundle == 'node' && !array_key_exists('comment_body',
-      $variables['account']) && array_key_exists('nid',
-      $variables['account']) && $variables['account']->nid == $nid
-  ) {
+  // Checks whether author is a comment author.
+  $is_not_comment = (!isset($variables['account']->comment_body));
 
-    // Get the Google+ ID of the node authot if it exists.
-    $google_id = google_authorship_get_google_id($variables['uid']);
+  // Checks to see if the author's Google+ ID is set, and if so, sets a variable
+  // for the id.
+  $is_id_set = ($google_id = google_authorship_get_google_id($variables['uid']));
 
-    // If the ID exists then proceed, otherwise do nothing.
-    if ($google_id !== NULL) {
-      // Then alter the link path.
-      $variables['link_path'] = 'http://plus.google.com/' . $google_id
-                                . "?rel='author'";
-    }
-  };
+  // Checks conditions set above and if it passes, alters the link path of the
+  // author.
+  if ($is_node_page && $is_not_comment && $is_id_set) {
+    $variables['link_path'] = 'http://plus.google.com/' . $google_id . "?rel='author'";
+  }
 }
 
 /**
@@ -60,11 +54,11 @@ function google_authorship_get_google_id($uid) {
   // Loads the author's user account.
   $account = user_load($uid);
 
-  // If the Google+ ID field is not empty then proceed.
-  if (!empty($account->field_google_plus_id)) {
-
-    // Get the Google+ ID.
-    $google_id = $account->field_google_plus_id[LANGUAGE_NONE][0]['safe_value'];
+  // Checks if Google+ ID field is set for the user and creates array for items
+  // in field if so.
+  if ($items = field_get_items('user', $account, 'field_google_plus_id')) {
+    // Get the Google+ ID for the items set above.
+    $google_id = $items[0]['safe_value'];
   }
   else {
     // If the Google+ ID field was empty, set $google_id to NULL.
@@ -81,9 +75,7 @@ function google_authorship_get_google_id($uid) {
  *
  * Adds additional validation to the user profile edit form.
  */
-function google_authorship_form_user_profile_form_alter(&$form,
-                                                        &$form_state,
-                                                        $form_id) {
+function google_authorship_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
 
   $form['#validate'][] = 'google_authorship_form_validate';
 }
