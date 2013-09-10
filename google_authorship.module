@@ -105,3 +105,14 @@ function google_authorship_form_validate(&$form, &$form_state) {
     };
   };
 }
+
+/**
+ * Implements hook_metatag_config_default_alter().
+ *
+ * Automatically assign the google_authorship_url to the 'author' meta tag.
+ */
+function google_authorship_metatag_config_default_alter(&$config) {
+  if (isset($config['node'])) {
+    $config['node']->config['author']['value'] = '[node:google_authorship_url]';
+  }
+}
