@@ -12,6 +12,10 @@
  * authors profile picture in its search results.
  */
 
+// The string to prefix the ID to make up the full URL.
+define('GOOGLE_AUTHORSHIP_PREFIX', 'http://plus.google.com/');
+
+
 /**
  * Implements template_preprocess_username().
  *
@@ -33,7 +37,7 @@ function google_authorship_preprocess_username(&$variables) {
   // Checks conditions set above and if it passes, alters the link path of the
   // author.
   if ($is_node_page && $is_not_comment && $is_id_set) {
-    $variables['link_path'] = 'http://plus.google.com/' . $google_id . "?rel=author";
+    $variables['link_path'] = GOOGLE_AUTHORSHIP_PREFIX . $google_id . "?rel=author";
   }
 }
 
