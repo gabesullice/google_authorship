@@ -19,7 +19,9 @@ Features
 - Adds Google authorship information to node pages
 - Boosts the credibility of your site when potential visitors see your site
     listed in search results
-  - Upcoming
+- Supports tokens (Special thanks to DamienMcKenna)
+- Works with Metadata module, if enabled (Special thanks to DamienMcKenna)
+- Upcoming
     - Specify which content types to display authorship information
     - Optionally retain link to user profiles and include authorship information
         in non-visible fields
