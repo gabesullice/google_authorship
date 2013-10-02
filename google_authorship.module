@@ -15,6 +15,41 @@
 // The string to prefix the ID to make up the full URL.
 define('GOOGLE_AUTHORSHIP_PREFIX', 'http://plus.google.com/');
 
+/**
+ * Implement hook_menu()
+ *
+ * Adds a configuration page.
+ */
+function google_authorship_menu() {
+
+  $items = array();
+
+  $items['admin/config/search/google_authorship'] = array(
+    'title' => 'Google Authorship',
+    'description' => 'Configure different settings for the Google Authorship module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('google_authorship_admin'),
+    'file' => 'includes/google_authorship.admin.inc',
+    'access arguments' => array('administer google authorship'),
+//    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permission()
+ *
+ * Adds permissions.
+ */
+function hook_permission() {
+  return array(
+    'administer google authorship' => array(
+      'title' => t('Administer Google Authorship'),
+      'description' => t('Perform administration tasks for the Google Authorship module.'),
+    ),
+  );
+}
 
 /**
  * Implements template_preprocess_username().
