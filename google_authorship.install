@@ -81,6 +81,8 @@ function google_authorship_uninstall() {
   };
 
   variable_del('google_authorship_use_metatag');
+  variable_del('google_authorship_use_head');
+  variable_del('google_authorship_use_user');
   variable_del('google_authorship_registration_disp');
   variable_del('google_authorship_bundles');
   variable_del('google_authorship_disp_for_roles');

@@ -20,6 +20,20 @@ function google_authorship_admin() {
     );
   }
 
+  $form['google_authorship_use_head'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Put Google Authorship Information in page head instead of relinking the author username on node pages?'),
+    '#default_value' => variable_get('google_authorship_use_head', 0),
+    '#description' => t('Enable this if you want to still be able to link from usernames to user account pages. This is also useful if your theme overrides the username link. NOTE: It is best NOT to use this with the Metatag option selected above, as it will create duplicate links. Please also ensure that Metatag is not already adding author information that may conflict with this.'),
+  );
+
+  $form['google_authorship_use_user'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Link to the author\'s user page as bio?'),
+    '#default_value' => variable_get('google_authorship_use_user', 0),
+    '#description' => t('Enable this if you use user accounts for bio pages. This will use "rel=\'author\'" in the author\'s user account link and add a "rel=\'me\' to the user account page head.'),
+  );
+
   $form['google_authorship_registration_disp'] = array(
     '#type' => 'checkbox',
     '#title' => t('Hide Google+ ID field on user registration form?'),
