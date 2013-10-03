@@ -16,13 +16,11 @@
 define('GOOGLE_AUTHORSHIP_PREFIX', 'http://plus.google.com/');
 
 /**
- * Implement hook_menu()
+ * Implement hook_menu().
  *
  * Adds a configuration page.
  */
 function google_authorship_menu() {
-
-  $items = array();
 
   $items['admin/config/search/google_authorship'] = array(
     'title' => 'Google Authorship',
@@ -31,14 +29,13 @@ function google_authorship_menu() {
     'page arguments' => array('google_authorship_admin'),
     'file' => 'includes/google_authorship.admin.inc',
     'access arguments' => array('administer google authorship'),
-//    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
 }
 
 /**
- * Implements hook_permission()
+ * Implements hook_permission().
  *
  * Adds permissions.
  */
@@ -59,8 +56,20 @@ function hook_permission() {
  */
 function google_authorship_preprocess_username(&$variables) {
 
+  // Checks if Metatag is being used instead of the default behavior
+  if (variable_get('google_authorship_use_metatag')) {
+    return;
+  }
+
   // Checks if the loaded page is a node page.
   $is_node_page = (($node = menu_get_object('node')));
+
+  $bundles = variable_get('google_authorship_bundles');
+
+  // Checks that authorship information should be added for the node content type
+  if (!empty($bundles) && !in_array($node->type, $bundles)) {
+    return;
+  }
 
   // Checks whether author is a comment author.
   $is_not_comment = (!isset($variables['account']->comment_body));
@@ -93,9 +102,33 @@ function google_authorship_get_google_id($uid) {
   // Loads the author's user account.
   $account = user_load($uid);
 
+  $disp_roles = array_keys(variable_get('google_authorship_disp_for_roles'));
+  $auth_roles = array_keys($account->roles);
+
+  $auth_has_role = FALSE;
+
+  // Checks that authorship information should be added for the author's roles
+  if (!empty($disp_roles)) {
+    foreach ($disp_roles as $role) {
+      if (in_array($role, $auth_roles)) {
+        $auth_has_role = TRUE;
+        break;
+      }
+    }
+  }
+  else {
+    $auth_has_role = TRUE;
+  }
+
+  if (!$auth_has_role) {
+    return NULL;
+  }
+
   // Checks if Google+ ID field is set for the user and creates array for items
   // in field if so.
-  if ($items = field_get_items('user', $account, 'field_google_plus_id')) {
+  $items = field_get_items('user', $account, 'field_google_plus_id');
+
+  if ($items) {
     // Get the Google+ ID for the items set above.
     $google_id = $items[0]['safe_value'];
   }
@@ -115,7 +148,6 @@ function google_authorship_get_google_id($uid) {
  * Adds additional validation to the user profile edit form.
  */
 function google_authorship_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
-
   $form['#validate'][] = 'google_authorship_form_validate';
 }
 
@@ -132,8 +164,8 @@ function google_authorship_form_validate(&$form, &$form_state) {
     // Get the form input for Google+ ID.
     $google_id = $form_state['values']['field_google_plus_id'][LANGUAGE_NONE][0]['value'];
 
-    // If the string is not 21 digits or it is not a numeric string.
-    if (strlen($google_id) != 21 || !preg_match('/^\d+$/', $google_id)) {
+    // If the string is not a 21 digit numeric string, throw error.
+    if (!preg_match('(^[0-9]{21}$)', $google_id)) {
 
       // Return for resubmission and display error.
       form_error($form, t('The Google+ ID should be 21 numeric digits.'));
@@ -148,6 +180,17 @@ function google_authorship_form_validate(&$form, &$form_state) {
  */
 function google_authorship_metatag_config_default_alter(&$config) {
   if (isset($config['node'])) {
-    $config['node']->config['author']['value'] = '[node:google_authorship_url]';
+    $config['node']->config['author']['value'] = GOOGLE_AUTHORSHIP_PREFIX . '[node:author:field_google_plus_id]';
+  }
+}
+
+/**
+ * Implement hook_form_FORM_ID_alter().
+ *
+ * Hides the Google+ ID from the user register form if that option has been set on the module's configuration page.
+ */
+function google_authorship_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  if (variable_get('google_authorship_registration_disp')) {
+    unset($form['field_google_plus_id']);
   }
 }

@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Defines admin configuration page for the Google Authorship module
+ * */
+
+/**
  * Adds an administration page for this module.
  */
 function google_authorship_admin() {
@@ -9,9 +14,9 @@ function google_authorship_admin() {
   if (module_exists('metatag')) {
     $form['google_authorship_use_metatag'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Use the Metatag module?'),
+      '#title' => t('Only use the Metatag module?'),
       '#default_value' => variable_get('google_authorship_use_metatag', 0),
-      '#description' => t('Enable this in order to use the Metatag module to add Google Authorship metadata info to node pages and not rewrite username links. This is helpful if your theme overrides the default author and date display.'),
+      '#description' => t('Enable this in order to use the Metatag module exclusively to add Google Authorship metadata info to node pages and not rewrite username links. This is helpful if your theme overrides the default author and date display.'),
     );
   }
 
@@ -28,10 +33,11 @@ function google_authorship_admin() {
     $bundles[$bundle] = $bundle_info['label'];
   }
 
-  $form['google_authorship_content_types'] = array(
+  $form['google_authorship_bundles'] = array(
     '#type' => 'select',
     '#title' => t('Display Google Authorship metadata on:'),
-    '#description' => t('This determines which bundles will have Google Authorship metadata added to their markup. No selection will display Google Authorship for every bundle.'),
+    '#default_value' => variable_get('google_authorship_bundles'),
+    '#description' => t('This determines which bundles will have Google Authorship metadata added to their markup. Making no selection will display Google Authorship for every bundle. Hold Control (PC) or Command (Mac) key down to select multiple bundles.'),
     '#options' => $bundles,
     '#multiple' => TRUE,
   );
@@ -45,7 +51,8 @@ function google_authorship_admin() {
   $form['google_authorship_disp_for_roles'] = array(
     '#type' => 'select',
     '#title' => t('Display Google Authorship for authors with these roles:'),
-    '#description' => t('This determines which authors will have Google Authorship metadata added to their markup, based on the author\'s role. No selection will display Google Authorship for every role.'),
+    '#default_value' => variable_get('google_authorship_disp_for_roles'),
+    '#description' => t('This determines which authors will have Google Authorship metadata added to their markup, based on the author\'s role. Making no selection will display Google Authorship for every role. Hold Control (PC) or Command (Mac) key down to select multiple bundles.'),
     '#options' => $roles,
     '#multiple' => TRUE,
   );
