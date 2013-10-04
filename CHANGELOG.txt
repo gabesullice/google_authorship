@@ -1,3 +1,13 @@
+<p>Changes since 7.x-1.1:</p>
+<ul>
+  <li>Added support for adding Google Authorship information in the HTML head. Added support for user accounts as bio pages. Bug fix.</li>
+  <li>Added hook_uninstall to clean up variables set in configuration.</li>
+  <li>Added in conditionals to act on variables set in the newly added configuration page. Renamed some of those variables.</li>
+  <li> Changed default config option for metatag to use field_google_plus_id instead of the URL built for the token defined in google_authorship.tokens.inc.</li>
+  <li>Updated form validation to single regex test rather than strlen() and preg_match combined.</li>
+  <li>Added configuration page and admin permission.</li>
+</ul>
+
 <p>Changes since 7.x-1.0-beta2:</p>
 <ul>
   <li>Added support for the metadata module.</li>
