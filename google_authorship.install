@@ -79,4 +79,11 @@ function google_authorship_uninstall() {
   if (field_info_field('field_google_plus_id')) {
     field_delete_field('field_google_plus_id');
   };
+
+  variable_del('google_authorship_use_metatag');
+  variable_del('google_authorship_use_head');
+  variable_del('google_authorship_use_user');
+  variable_del('google_authorship_registration_disp');
+  variable_del('google_authorship_bundles');
+  variable_del('google_authorship_disp_for_roles');
 }
