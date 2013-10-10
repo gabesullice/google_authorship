@@ -61,13 +61,12 @@ function google_authorship_preprocess_username(&$variables) {
     return;
   }
 
-  // Checks if the loaded page is a node page.
-  $is_node_page = (($node = menu_get_object('node')));
+  $node = menu_get_object('node');
 
   $bundles = variable_get('google_authorship_bundles');
 
-  // Checks that authorship information should be added for the node content type
-  if (!empty($bundles) && !in_array($node->type, $bundles)) {
+  // Checks if the loaded page is a node page. Checks that authorship information should be added for the node content type
+  if (empty($node) || (empty($bundles) && !in_array($node->type, $bundles))) {
     return;
   }
 
@@ -80,7 +79,7 @@ function google_authorship_preprocess_username(&$variables) {
 
   // Checks conditions set above and if it passes, alters the link path of the
   // author.
-  if ($is_node_page && $is_not_comment && $is_id_set) {
+  if ($node && $is_not_comment && $is_id_set) {
     if (variable_get('google_authorship_use_head')) {
       $element = array(
         '#tag'        => 'link',
