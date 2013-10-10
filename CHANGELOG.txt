@@ -1,3 +1,8 @@
+<p>Changes since 7.x-2.0-beta0:</p>
+<ul>
+  <li><a href="/node/2108387">#2108387</a> by gabesullice: Fixed Property of Non-Object Error.</li>
+</ul>
+
 <p>Changes since 7.x-1.1:</p>
 <ul>
   <li>Added support for adding Google Authorship information in the HTML head. Added support for user accounts as bio pages. Bug fix.</li>
